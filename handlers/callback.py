@@ -22,6 +22,7 @@ async def main_menu(callback: CallbackQuery, bot: Bot):
         chat_id=callback.from_user.id,
         message_id=callback.message.message_id,
         text=msg_text,
+        disable_web_page_preview=True,
         reply_markup=keyboard,
     )
 
