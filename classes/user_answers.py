@@ -27,7 +27,7 @@ class UserAnswers:
         message = self.button() + f' {len(self.answers)} ответов:\n'
         answers = []
         for question, answer in self.answers.items():
-            answers.append(f'❔ {question}:\n\t\t{EMOJI[answer]} {answer}')
+            answers.append(f'❔ {question}:\n          {EMOJI[answer]} {answer}')
         message += '\n'.join(answers)
         return message
 
