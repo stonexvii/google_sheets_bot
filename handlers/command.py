@@ -13,7 +13,7 @@ command_router = Router()
 async def command_start(message: Message):
     users = google_client.get_answers()
     if users:
-        msg_text = f'Привет, {message.from_user.id}!\nВот ссылка на тест: {config.TEST_URL}'
+        msg_text = f'Привет, {message.from_user.full_name}!\nВот ссылка на тест:\n{config.TEST_URL}'
         keyboard = ikb_users_answers(users)
     else:
         msg_text = 'Ответов нет!'

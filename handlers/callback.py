@@ -1,6 +1,7 @@
 from aiogram import Router, Bot, F
 from aiogram.types import CallbackQuery
 
+import config
 from google_api import client as google_client
 from keyboards import ikb_users_answers, ikb_newlyweds_answers
 from keyboards.callback_data import CallbackAnswers
@@ -9,17 +10,17 @@ callback_router = Router()
 
 
 @callback_router.callback_query(CallbackAnswers.filter(F.button == 'back'))
-async def main_menu(update: CallbackQuery, bot: Bot):
+async def main_menu(callback: CallbackQuery, bot: Bot):
     users = google_client.get_answers()
     if users:
-        msg_text = f'Привет, {update.from_user.full_name}'
+        msg_text = f'Привет, {callback.from_user.full_name}!\nВот ссылка на тест:\n{config.TEST_URL}'
         keyboard = ikb_users_answers(users)
     else:
         msg_text = 'Ответов нет!'
         keyboard = None
     await bot.edit_message_text(
-        chat_id=update.from_user.id,
-        message_id=update.message.message_id,
+        chat_id=callback.from_user.id,
+        message_id=callback.message.message_id,
         text=msg_text,
         reply_markup=keyboard,
     )

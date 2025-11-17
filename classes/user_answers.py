@@ -2,6 +2,14 @@ from datetime import datetime
 
 import config
 
+EMOJI = {
+    'Жених': '🤵🏻‍♂️',
+    'Невеста': '👰🏻‍♀️',
+    'Оба': '👩‍❤️‍👨',
+    'Никто': '❌',
+
+}
+
 
 class UserAnswers:
 
@@ -19,7 +27,7 @@ class UserAnswers:
         message = self.button() + f' {len(self.answers)} ответов:\n'
         answers = []
         for question, answer in self.answers.items():
-            answers.append(f'{question}: {answer}')
+            answers.append(f'❔ {question}:\n\t\t{EMOJI[answer]} {answer}')
         message += '\n'.join(answers)
         return message
 
